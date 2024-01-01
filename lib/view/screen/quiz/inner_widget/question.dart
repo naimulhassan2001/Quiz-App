@@ -73,12 +73,12 @@ class Question extends StatelessWidget {
                     children: [
                       CustomText(
                         text:
-                            "${quizController.ansNumber.value} / ${quizController.skipNumber.value}",
+                            "${quizController.questionNumber.value.ceil()} / ${quizController.skipNumber.value.ceil()}",
                         alignment: Alignment.topLeft,
                       ),
                       CustomText(
                         text:
-                            "${quizController.questionNumber.value + 1} / ${quizController.rightAnsNumber.value}",
+                            "${quizController.ansNumber.value.ceil() + 1} / ${quizController.rightAnsNumber.value.ceil()}",
                         alignment: Alignment.topRight,
                       ),
                     ],
@@ -92,7 +92,7 @@ class Question extends StatelessWidget {
                         onTap: quizController.isNext.value
                             ? () {}
                             : () =>
-                                quizController.submitButton(optionList[index]),
+                                quizController.selectItem(optionList[index]),
                         child: Container(
                           padding: EdgeInsets.symmetric(vertical: 4.h),
                           decoration: BoxDecoration(
@@ -121,8 +121,8 @@ class Question extends StatelessWidget {
                               ? AppString.next
                               : AppString.skip,
                           onTap: quizController.isNext.value
-                              ? () => quizController.nextQuestion()
-                              : () => quizController.skipQuestion(),
+                              ? () => quizController.nextButton()
+                              : () => quizController.skipButton(),
                           height: 30.h,
                           width: 100.w,
                         )),

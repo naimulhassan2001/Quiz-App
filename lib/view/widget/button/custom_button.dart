@@ -29,23 +29,24 @@ class CustomButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-          height: height,
-          width: width,
-          decoration: ShapeDecoration(
-            color: backGroundColor,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(radius)),
-          ),
-          child: Center(
-            child: Text(
-              text,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: fontSize,
-                fontWeight: fontWeight,
-              ),
+        height: height,
+        width: width,
+        decoration: ShapeDecoration(
+          color: backGroundColor,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(radius)),
+        ),
+        child: Center(
+          child: Text(
+            text,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: fontSize,
+              fontWeight: fontWeight,
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }

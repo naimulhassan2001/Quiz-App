@@ -1,6 +1,8 @@
 import 'dart:ui';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
+import 'package:quiz_app/utils/audio/app_audio.dart';
 import '../core/app_route/app_route.dart';
 import '../utils/colors/app_colors.dart';
 
@@ -206,13 +208,15 @@ class QuizController extends GetxController {
 
   RxInt questionNumber = 0.obs;
 
-  RxInt rightAnsNumber = 0.obs;
+  RxDouble rightAnsNumber = 0.0.obs;
 
-  RxInt ansNumber = 0.obs;
-  RxInt skipNumber = 0.obs;
+  RxDouble ansNumber = 0.0.obs;
+  RxDouble skipNumber = 0.0.obs;
 
   RxString isSelected = "".obs;
   RxString rightAns = "".obs;
+
+  final player = AudioPlayer();
 
   RxBool isNext = false.obs;
 
@@ -220,16 +224,20 @@ class QuizController extends GetxController {
 
   Color rightAnsColors = AppColors.white100;
 
-  submitButton(String selectText) {
+  selectItem(String selectText) async {
     color = AppColors.red100;
     rightAnsColors = AppColors.green100;
     isNext.value = true;
     ansNumber.value = ansNumber.value + 1;
+    isSelected.value = selectText;
+
     if (selectText == rightAns.value) {
       color = AppColors.green100;
       rightAnsNumber.value = rightAnsNumber.value + 1;
+      await player.play(AssetSource(AppAudio.right));
+    } else {
+      await player.play(AssetSource(AppAudio.wrong));
     }
-    isSelected.value = selectText;
   }
 
   listItemColors(String selectAns) {
@@ -244,7 +252,7 @@ class QuizController extends GetxController {
     return returnColor;
   }
 
-  nextQuestion() {
+  nextButton() {
     color = AppColors.black10;
     isSelected = "".obs;
     rightAns = "".obs;
@@ -260,8 +268,8 @@ class QuizController extends GetxController {
     }
   }
 
-  skipQuestion() {
-    if (questionNumber.value <= 9) {
+  skipButton() {
+    if (skipNumber.value <= 9) {
       if (questionNumber.value + 1 != quizList.length) {
         questionNumber.value = questionNumber.value + 1;
         skipNumber.value = skipNumber.value + 1;

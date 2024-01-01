@@ -12,26 +12,31 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          CustomText(
-            text: AppString.appName,
-            fontSize: 24.sp,
-            fontWeight: FontWeight.w600,
-            alignment: Alignment.center,
-          ),
-          SizedBox(height: 30.h,),
-          CustomButton(
-            text: AppString.startNow,
-            onTap: () {
-              Get.toNamed(AppRoute.quiz) ;
-            },
-            width: 120.w,
-            height: 30.h,
-          )
-        ],
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CustomText(
+              text: AppString.appName,
+              fontSize: 24.sp,
+              fontWeight: FontWeight.w600,
+              alignment: Alignment.center,
+            ),
+            SizedBox(
+              height: 30.h,
+            ),
+            CustomButton(
+              text: AppString.startNow,
+              onTap: () {
+                Get.toNamed(AppRoute.quiz);
+              },
+              width: 120.w,
+              height: 30.h,
+            )
+          ],
+        ),
       ),
     );
   }
