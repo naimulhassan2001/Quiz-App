@@ -73,12 +73,12 @@ class Question extends StatelessWidget {
                     children: [
                       CustomText(
                         text:
-                            "${quizController.questionNumber.value.ceil()} / ${quizController.skipNumber.value.ceil()}",
+                            "${quizController.questionNumber.value.ceil() + 1} / ${quizController.skipNumber.value.ceil()}",
                         alignment: Alignment.topLeft,
                       ),
                       CustomText(
                         text:
-                            "${quizController.ansNumber.value.ceil() + 1} / ${quizController.rightAnsNumber.value.ceil()}",
+                            "${quizController.ansNumber.value.ceil() } / ${quizController.rightAnsNumber.value.ceil()}",
                         alignment: Alignment.topRight,
                       ),
                     ],
